@@ -5,11 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Responsive Starter Template</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   </head>
   <body>
     <header></header>
     <main>
       <section class="main_page">
+        <div
+          style="
+            display: flex;
+            position: fixed;
+            color: red;
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+            top: 0;
+            margin-top: 300px;
+          "
+        >
+        <div id="app" class="app">
+          <!-- Screen 1: Welcome Modal -->
+          <div id="screen-1" class="screen modal active">
+            <div class="modal-content">
+              <h2>Welcome</h2>
+              <button class="btn" onclick="startProcess()">Start</button>
+            </div>
+          </div>
+      
+          <!-- Screen 2: Card Selection Screen -->
+          <div id="screen-2" class="screen modal hidden">
+            <div class="modal-content text-center">
+              <h2>Select Your Card</h2>
+              <div class="card-grid">
+                <!-- Replace these URLs with your card images or local paths -->
+                <img src="https://w7.pngwing.com/pngs/608/286/png-transparent-playing-card-ace-of-hearts-suit-cards-love-rectangle-heart.png" class="card-option" data-index="0" onclick="selectCard(0)" />
+                <img src="https://png.pngtree.com/png-vector/20230414/ourlarge/pngtree-uno-card-vector-png-image_6705734.png" class="card-option" data-index="1" onclick="selectCard(1)" />
+              </div>
+            </div>
+          </div>
+      
+          <!-- Screen 3: Card Preview Screen with Navigation & Close Button -->
+          <div id="screen-3" class="screen modal hidden">
+            <div class="modal-content text-center relative">
+              <button class="close-btn" onclick="showScreen('screen-2')">&times;</button>
+              <div class="card-preview-container">
+                <button class="nav-btn" onclick="prevCard()">&#10094;</button>
+                <img id="cardPreview" class="card-preview" src="" alt="Card Preview" />
+                <button class="nav-btn" onclick="nextCard()">&#10095;</button>
+              </div>
+              <button class="btn" onclick="openUserForm()">Select</button>
+            </div>
+          </div>
+      
+          <!-- Screen 4: User Input Form Modal -->
+          <div id="screen-4" class="screen modal hidden">
+            <div class="modal-content text-center relative">
+              <button class="close-btn" onclick="showScreen('screen-3')">&times;</button>
+              <h3>Enter Your Details</h3>
+              <input type="text" id="firstname" class="input-field" placeholder="First Name" />
+              <input type="text" id="phone" class="input-field" placeholder="+971" disabled />
+              <input type="text" id="recipient" class="input-field" placeholder="Recipient Name" />
+              <input type="text" id="recipientPhone" class="input-field" placeholder="Recipient Phone" />
+              <button class="btn" onclick="submitForm()">Enter</button>
+            </div>
+          </div>
+      
+          <!-- Screen 5: Generated Card Display -->
+          <div id="screen-5" class="screen modal hidden">
+            <div class="modal-content text-center">
+              <div id="generatedCard" class="generated-card">
+                <img id="finalCardImage" class="card-image" src="" alt="Generated Card" />
+                <p id="cardMessage" class="card-message"></p>
+              </div>
+              <button class="btn" onclick="finalSubmission()">Continue</button>
+            </div>
+          </div>
+      
+          <!-- Screen 6: Final Popup with Confetti & Download Button -->
+          <div id="screen-6" class="screen modal hidden">
+            <div class="modal-content text-center relative">
+              <button class="close-btn" onclick="showScreen('screen-2')">&times;</button>
+              <h3>Your generated card will be delivered in 24 hours</h3>
+              <button class="btn" onclick="downloadImage()">Download</button>
+            </div>
+          </div>
+        </div>
+        </div>
         <div class="main_page_content">
           <h1 style="color: yellow; font-size: 40; text-align: center">
             Send a Dua
@@ -43,8 +124,12 @@
         >
           <h1 style="text-align: center">Find the Perfect Dua</h1>
           <h3 style="text-align: center">For your loved ones</h3>
-          <p style="text-align: center;">Browse heartfelt ramdan duas crafted to inspire and uplift</p>
-          <p style="text-align: center;">Choose one to share your prayers and brighten a loved one's day</p>
+          <p style="text-align: center">
+            Browse heartfelt ramdan duas crafted to inspire and uplift
+          </p>
+          <p style="text-align: center">
+            Choose one to share your prayers and brighten a loved one's day
+          </p>
           <div class="container">
             <div>1</div>
             <div>2</div>
